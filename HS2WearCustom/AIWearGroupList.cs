@@ -8,12 +8,8 @@ using UnityEngine.UI;
 
 namespace HS2WearCustom
 {
-	// Token: 0x0200001A RID: 26
 	public class AIWearGroupList : MonoBehaviour
 	{
-		// Token: 0x1700001A RID: 26
-		// (get) Token: 0x06000081 RID: 129 RVA: 0x00002925 File Offset: 0x00000B25
-		// (set) Token: 0x06000082 RID: 130 RVA: 0x000057CA File Offset: 0x000039CA
 		public bool active
 		{
 			get
@@ -34,7 +30,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000083 RID: 131 RVA: 0x00005804 File Offset: 0x00003A04
 		public void InitList(int _sex)
 		{
 			this.Init();
@@ -71,7 +66,6 @@ namespace HS2WearCustom
 			this.wearPartList.active = false;
 		}
 
-		// Token: 0x06000084 RID: 132 RVA: 0x000059B0 File Offset: 0x00003BB0
 		private void OnSelect(ChaListDefine.CategoryNo _no, int partN)
 		{
 			if (this.select != ChaListDefine.CategoryNo.unknown && this.dicNode.TryGetValue(this.select, out Image imgOld) && imgOld != null)
@@ -91,7 +85,6 @@ namespace HS2WearCustom
 			this.wearCtrl.UpdateInfo();
 		}
 
-		// Token: 0x06000085 RID: 133 RVA: 0x00005A6C File Offset: 0x00003C6C
 		private void Init()
 		{
 			int childCount = this.transformRoot.childCount;
@@ -271,34 +264,24 @@ namespace HS2WearCustom
 			this.dicNode.Add(no, component.image);
 		}
 
-		// Token: 0x04000054 RID: 84
 		private bool isInit;
 
-		// Token: 0x04000055 RID: 85
 		private Dictionary<ChaListDefine.CategoryNo, Image> dicNode;
 
-		// Token: 0x04000056 RID: 86
 		public ChaListDefine.CategoryNo select = ChaListDefine.CategoryNo.unknown;
 
-		// Token: 0x04000057 RID: 87
 		public int selectKind = -1;
 
-		// Token: 0x04000058 RID: 88
 		public int sex = -1;
 
-		// Token: 0x04000059 RID: 89
 		public Transform transformRoot;
 
-		// Token: 0x0400005A RID: 90
 		public GameObject objectPrefab;
 
-		// Token: 0x0400005B RID: 91
 		public ScrollRect scrollRect;
 
-		// Token: 0x0400005C RID: 92
 		public AIWearPartList wearPartList;
 
-		// Token: 0x0400005D RID: 93
 		public AIWearControllerUI wearCtrl;
 	}
 }

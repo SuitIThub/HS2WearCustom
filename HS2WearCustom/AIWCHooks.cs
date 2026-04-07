@@ -8,7 +8,6 @@ using UnityEngine;
 
 namespace HS2WearCustom
 {
-	// Token: 0x02000003 RID: 3
 	public static class AIWCHooks
 	{
 		private static void LogDiag(string msg)
@@ -20,7 +19,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000007 RID: 7 RVA: 0x00002188 File Offset: 0x00000388
 		[HarmonyPostfix]
 		[HarmonyPatch(typeof(MPCharCtrl), "OnClickRoot", new Type[]
 		{

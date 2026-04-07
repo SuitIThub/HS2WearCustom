@@ -12,12 +12,8 @@ using UnityEngine.UI;
 
 namespace HS2WearCustom
 {
-	// Token: 0x0200001C RID: 28
 	public class AIWearPartList : MonoBehaviour
 	{
-		// Token: 0x1700001B RID: 27
-		// (get) Token: 0x0600008A RID: 138 RVA: 0x00002925 File Offset: 0x00000B25
-		// (set) Token: 0x0600008B RID: 139 RVA: 0x00005B82 File Offset: 0x00003D82
 		public bool active
 		{
 			get
@@ -33,7 +29,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x0600008C RID: 140 RVA: 0x00005BA0 File Offset: 0x00003DA0
 		public void InitList(int _sex, ChaListDefine.CategoryNo typeNo, int kind)
 		{
 			this.Init();
@@ -73,12 +68,10 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x0600008D RID: 141 RVA: 0x00005CF9 File Offset: 0x00003EF9
 		public void updateInfo()
 		{
 		}
 
-		// Token: 0x0600008E RID: 142 RVA: 0x00005CFC File Offset: 0x00003EFC
 		private void Init()
 		{
 			int childCount = this.transformRoot.childCount;
@@ -90,7 +83,6 @@ namespace HS2WearCustom
 			this.dicNode = new Dictionary<int, Image>();
 		}
 
-		// Token: 0x0600008F RID: 143 RVA: 0x00005D50 File Offset: 0x00003F50
 		private void OnSelect(int infoNo)
 		{
 			if (this.select != infoNo)
@@ -105,7 +97,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000090 RID: 144 RVA: 0x00005DC0 File Offset: 0x00003FC0
 		private void CreateNode(CustomSelectInfo info, int no, bool isF)
 		{
 			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.objectPrefab);
@@ -128,7 +119,6 @@ namespace HS2WearCustom
 			this.dicNode.Add(no, component.image);
 		}
 
-		// Token: 0x06000091 RID: 145 RVA: 0x00005E6C File Offset: 0x0000406C
 		private void ChangeClothLink(CustomSelectInfo info)
 		{
 			if (info == null)
@@ -756,37 +746,26 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x04000061 RID: 97
 		private Dictionary<int, Image> dicNode;
 
-		// Token: 0x04000062 RID: 98
 		public Transform transformRoot;
 
-		// Token: 0x04000063 RID: 99
 		public GameObject objectPrefab;
 
-		// Token: 0x04000064 RID: 100
 		public ScrollRect scrollRect;
 
-		// Token: 0x04000065 RID: 101
 		public MPCharCtrl mpCharCtrl;
 
-		// Token: 0x04000066 RID: 102
 		public AIWearControllerUI wearCtrl;
 
-		// Token: 0x04000067 RID: 103
 		private List<CustomSelectInfo> partLst;
 
-		// Token: 0x04000068 RID: 104
 		private ChaListDefine.CategoryNo selectType;
 
-		// Token: 0x04000069 RID: 105
 		private int partKind;
 
-		// Token: 0x0400006A RID: 106
 		private int select;
 
-		// Token: 0x0400006B RID: 107
 		private int wearType = -1;
 	}
 }

@@ -16,3 +16,5 @@ using System.Runtime.Versioning;
 [assembly: ComVisible(false)]
 [assembly: Guid("cffad6c4-53a1-4cf5-b94a-2d02ff9c867c")]
 [assembly: AssemblyFileVersion("0.1.5.0")]
+[assembly: AssemblyMetadata("RepositoryUrl", "https://github.com/SuitIThub/HS2WearCustom")]
+

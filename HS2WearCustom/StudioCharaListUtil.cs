@@ -12,10 +12,8 @@ using UnityEngine.UI;
 
 namespace HS2WearCustom
 {
-	// Token: 0x0200001E RID: 30
 	public class StudioCharaListUtil : MonoBehaviour
 	{
-		// Token: 0x06000095 RID: 149 RVA: 0x00005F14 File Offset: 0x00004114
 		public static void Install()
 		{
 			if (Singleton<global::Studio.Studio>.Instance == null)
@@ -40,7 +38,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000096 RID: 150 RVA: 0x00005FD0 File Offset: 0x000041D0
 		private void OnGUI()
 		{
 			if (this.showGUI && this.changeButton != null && this.changeButton.gameObject.activeInHierarchy && this.changeButton.interactable)
@@ -58,7 +55,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000097 RID: 151 RVA: 0x000060C4 File Offset: 0x000042C4
 		public static Rect RectTransformToScreenSpace(RectTransform transform)
 		{
 			Vector2 vector = Vector2.Scale(transform.rect.size, transform.lossyScale);
@@ -68,7 +64,6 @@ namespace HS2WearCustom
 			return result;
 		}
 
-		// Token: 0x06000098 RID: 152 RVA: 0x00006168 File Offset: 0x00004368
 		private void FuncWindowGUI(int winID)
 		{
 			try
@@ -119,7 +114,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000099 RID: 153 RVA: 0x00006314 File Offset: 0x00004514
 		private void Init(bool isCharaList, bool isMale)
 		{
 			this.studio = Singleton<global::Studio.Studio>.Instance;
@@ -141,13 +135,11 @@ namespace HS2WearCustom
 			this.isMale = isMale;
 		}
 
-		// Token: 0x0600009A RID: 154 RVA: 0x00006410 File Offset: 0x00004610
 		public void Clear()
 		{
 			this._namePattern = "";
 		}
 
-		// Token: 0x0600009B RID: 155 RVA: 0x00006420 File Offset: 0x00004620
 		public void Refresh()
 		{
 			if (this.isCoordinate)
@@ -173,7 +165,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x0600009C RID: 156 RVA: 0x00006498 File Offset: 0x00004698
 		public void LoadAndChangeCloth(bool clothOnly, bool accessoryOnly)
 		{
 			OCIChar ocichar = StudioCharaListUtil.f_m_OCIChar.GetValue(this.mpCharCtrl) as OCIChar;
@@ -217,7 +208,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x0600009D RID: 157 RVA: 0x000065A8 File Offset: 0x000047A8
 		private void ChangeChara()
 		{
 			foreach (OCIChar ociChar in (from v in Singleton<GuideObjectManager>.Instance.selectObjectKey
@@ -230,7 +220,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x0600009E RID: 158 RVA: 0x0000664C File Offset: 0x0000484C
 		private void ChangeChara(OCIChar ociChar)
 		{
 			foreach (OCIChar.BoneInfo boneInfo in (from v in ociChar.listBones
@@ -310,7 +299,6 @@ namespace HS2WearCustom
 			ociChar.ChangeMouthOpen(ociChar.oiCharInfo.mouthOpen);
 		}
 
-		// Token: 0x0600009F RID: 159 RVA: 0x00006A10 File Offset: 0x00004C10
 		private void RemoveBoneModifier(OCIChar ociChar)
 		{
 			Component[] components = ociChar.charInfo.gameObject.GetComponents<Component>();
@@ -338,7 +326,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x060000A0 RID: 160 RVA: 0x00006A9F File Offset: 0x00004C9F
 		private IEnumerator TryLoadBoneModifierCo(ChaControl charInfo)
 		{
 			yield return new WaitForEndOfFrame();
@@ -369,100 +356,68 @@ namespace HS2WearCustom
 			yield break;
 		}
 
-		// Token: 0x0400006E RID: 110
 		private static FieldInfo f_charaFileSort = typeof(CharaList).GetField("charaFileSort", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField);
 
-		// Token: 0x0400006F RID: 111
 		private static FieldInfo f_sortType = typeof(CharaFileSort).GetField("sortType", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField);
 
-		// Token: 0x04000070 RID: 112
 		private static FieldInfo f_costumeInfo = typeof(MPCharCtrl).GetField("costumeInfo", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField);
 
-		// Token: 0x04000071 RID: 113
 		private static Type t_CostumeInfo = typeof(MPCharCtrl).GetNestedType("CostumeInfo", BindingFlags.Public | BindingFlags.NonPublic);
 
-		// Token: 0x04000072 RID: 114
 		private static FieldInfo f_CostumeInfo_fileSort = StudioCharaListUtil.t_CostumeInfo.GetField("fileSort", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField);
 
-		// Token: 0x04000073 RID: 115
 		private static MethodInfo m_CostumeInfo_InitList = StudioCharaListUtil.t_CostumeInfo.GetMethod("InitList", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.InvokeMethod);
 
-		// Token: 0x04000074 RID: 116
 		private static FieldInfo f_m_OCIChar = typeof(MPCharCtrl).GetField("m_OCIChar", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.GetField);
 
-		// Token: 0x04000075 RID: 117
 		private string _namePattern = "";
 
-		// Token: 0x04000076 RID: 118
 		public RectTransform orgRect;
 
-		// Token: 0x04000077 RID: 119
 		public bool isCoordinate;
 
-		// Token: 0x04000078 RID: 120
 		private global::Studio.Studio studio;
 
-		// Token: 0x04000079 RID: 121
 		private CharaList charaList;
 
-		// Token: 0x0400007A RID: 122
 		private MPCharCtrl mpCharCtrl;
 
-		// Token: 0x0400007B RID: 123
 		private object costumeInfo;
 
-		// Token: 0x0400007C RID: 124
 		private CharaFileSort charaFileSort;
 
-		// Token: 0x0400007D RID: 125
 		public bool showGUI = true;
 
-		// Token: 0x0400007E RID: 126
 		private List<CharaFileInfo> listMatched = new List<CharaFileInfo>();
 
-		// Token: 0x0400007F RID: 127
 		private bool isMale;
 
-		// Token: 0x04000080 RID: 128
 		private int windowID = 8725;
 
-		// Token: 0x04000081 RID: 129
 		private const int panelWidth = 120;
 
-		// Token: 0x04000082 RID: 130
 		private const int panelHeight = 180;
 
-		// Token: 0x04000083 RID: 131
 		private const int panelHeightCoordinate = 180;
 
-		// Token: 0x04000084 RID: 132
 		private Rect windowRect = new Rect(200f, 100f, 120f, 150f);
 
-		// Token: 0x04000085 RID: 133
 		private string windowTitle = "";
 
-		// Token: 0x04000086 RID: 134
 		private bool replaceCharaHairOnly;
 
-		// Token: 0x04000087 RID: 135
 		private bool replaceCharaHeadOnly;
 
-		// Token: 0x04000088 RID: 136
 		private bool replaceCharaBodyOnly;
 
-		// Token: 0x04000089 RID: 137
 		private bool replaceCharaClothesOnly;
 
-		// Token: 0x0400008A RID: 138
 		private bool replaceCharaAccOnly;
 
-		// Token: 0x0400008B RID: 139
 		private Button changeButton;
 
-		// Token: 0x0400008C RID: 140
 		private static MethodInfo m_LoadFromFile = null;
 
-		// Token: 0x0400008D RID: 141
 		private static MethodInfo m_ClearModifiers = null;
 	}
 }

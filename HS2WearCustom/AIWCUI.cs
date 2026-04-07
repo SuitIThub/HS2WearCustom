@@ -6,10 +6,8 @@ using UnityEngine.UI;
 
 namespace HS2WearCustom
 {
-	// Token: 0x02000005 RID: 5
 	internal static class AIWCUI
 	{
-		// Token: 0x0600000E RID: 14 RVA: 0x00002284 File Offset: 0x00000484
 		internal static void InitUI()
 		{
 			if (AIWCUI.isUIInited)
@@ -23,7 +21,6 @@ namespace HS2WearCustom
 			AIWCUI.isUIInited = true;
 		}
 
-		// Token: 0x0600000F RID: 15 RVA: 0x000022C0 File Offset: 0x000004C0
 		internal static void InitCharUI()
 		{
 			if (AIWCUI.isCharUIInited)
@@ -34,7 +31,6 @@ namespace HS2WearCustom
 			AIWCUI.isCharUIInited = true;
 		}
 
-		// Token: 0x06000010 RID: 16 RVA: 0x000022DC File Offset: 0x000004DC
 		private static void CreateMenuEntry(GameObject listmenu, GameObject chara0)
 		{
 			GameObject gameObject = GameObject.Find("StudioScene/Canvas Main Menu/02_Manipulate/00_Chara/00_Root/Viewport/Content/Cos");
@@ -66,7 +62,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000011 RID: 17 RVA: 0x0000236C File Offset: 0x0000056C
 		private static void CreatButton(string name, string text, GameObject parent, GameObject button, GameObject chara0, int _idx, bool accessoriesOnly)
 		{
 			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(button, parent.transform, true);
@@ -98,7 +93,6 @@ namespace HS2WearCustom
 			});
 		}
 
-		// Token: 0x06000012 RID: 18 RVA: 0x0000240C File Offset: 0x0000060C
 		private static void CreatePanel(GameObject chara0)
 		{
 			GameObject gameObject = GameObject.Find("StudioScene/Canvas Main Menu/02_Manipulate");
@@ -136,7 +130,6 @@ namespace HS2WearCustom
 			UnityEngine.Object.Destroy(AIWCUI.wcCtrlPanel.GetComponent<MPItemCtrl>());
 		}
 
-		// Token: 0x06000013 RID: 19 RVA: 0x00002690 File Offset: 0x00000890
 		public static void OnclickedRoot(int _idx)
 		{
 			if (AIWCUI.isUIInited)
@@ -157,8 +150,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x17000003 RID: 3
-		// (set) Token: 0x06000014 RID: 20 RVA: 0x000026C3 File Offset: 0x000008C3
 		public static bool active
 		{
 			set
@@ -174,7 +165,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000015 RID: 21 RVA: 0x000026EF File Offset: 0x000008EF
 		public static void UpdataInfo()
 		{
 			if (AIWCUI.wearPartList.active)
@@ -183,31 +173,22 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x04000003 RID: 3
 		private static bool isUIInited;
 
-		// Token: 0x04000004 RID: 4
 		private static bool isCharUIInited;
 
-		// Token: 0x04000005 RID: 5
 		private static GameObject listmenu;
 
-		// Token: 0x04000006 RID: 6
 		private static Button[] selectButtons;
 
-		// Token: 0x04000007 RID: 7
 		public static GameObject wcUIPanel;
 
-		// Token: 0x04000008 RID: 8
 		private static GameObject wcCtrlPanel;
 
-		// Token: 0x04000009 RID: 9
 		public static AIWearGroupList wearGroupList;
 
-		// Token: 0x0400000A RID: 10
 		private static AIWearPartList wearPartList;
 
-		// Token: 0x0400000B RID: 11
 		private static AIWearControllerUI wearPartCtrl;
 	}
 }

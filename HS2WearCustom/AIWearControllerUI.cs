@@ -13,9 +13,6 @@ namespace HS2WearCustom
 	// Token: 0x02000009 RID: 9
 	public class AIWearControllerUI : MonoBehaviour
 	{
-		// Token: 0x17000004 RID: 4
-		// (get) Token: 0x0600001D RID: 29 RVA: 0x00002925 File Offset: 0x00000B25
-		// (set) Token: 0x0600001E RID: 30 RVA: 0x00002932 File Offset: 0x00000B32
 		public bool active
 		{
 			get
@@ -32,7 +29,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x0600001F RID: 31 RVA: 0x00002954 File Offset: 0x00000B54
 		public void Init(GameObject root, GameObject cgTrans)
 		{
 			this.selChar = null;
@@ -198,7 +194,6 @@ namespace HS2WearCustom
 			});
 		}
 
-		// Token: 0x06000020 RID: 32 RVA: 0x00003294 File Offset: 0x00001494
 		private void InitHairPreset()
 		{
 			if (this.items == null)
@@ -243,7 +238,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000021 RID: 33 RVA: 0x00003648 File Offset: 0x00001848
 		private void SafeReleaseCustomTexture()
 		{
 			if (this.selChar != null && this.selTextureInited)
@@ -258,7 +252,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000022 RID: 34 RVA: 0x000036A0 File Offset: 0x000018A0
 		private void ReleaseBaseCustomTextureClothes(int i)
 		{
 			try
@@ -275,7 +268,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000023 RID: 35 RVA: 0x000036F0 File Offset: 0x000018F0
 		private void InitBaseCustomTextureClothes(int i)
 		{
 			try
@@ -291,7 +283,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000024 RID: 36 RVA: 0x00003738 File Offset: 0x00001938
 		public void UpdateInfo()
 		{
 			if (this.ociChar.charInfo != this.selChar)
@@ -508,7 +499,6 @@ namespace HS2WearCustom
 			this.isUpdateInfo = false;
 		}
 
-		// Token: 0x06000025 RID: 37 RVA: 0x00003BB4 File Offset: 0x00001DB4
 		private void updateClothColorInfo(AIWearControllerUI.ColorInfo ci, ChaFileClothes.PartsInfo.ColorInfo pci)
 		{
 			ci.enable = true;
@@ -527,7 +517,6 @@ namespace HS2WearCustom
 			ci._input[4].value = pci.rotation;
 		}
 
-		// Token: 0x06000026 RID: 38 RVA: 0x00003CA6 File Offset: 0x00001EA6
 		private void updateHairColorInfo(AIWearControllerUI.ColorInfo ci, bool show)
 		{
 			ci.enable = show;
@@ -535,7 +524,6 @@ namespace HS2WearCustom
 			ci.EnablePattern = false;
 		}
 
-		// Token: 0x06000027 RID: 39 RVA: 0x00003CC0 File Offset: 0x00001EC0
 		private void OnClickColorMain(int _idx)
 		{
 			if (this.wearType == 1)
@@ -608,7 +596,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000028 RID: 40 RVA: 0x00003F00 File Offset: 0x00002100
 		private void SetHairColor(int _idx, Color _c)
 		{
 			ChaFileHair.PartsInfo[] parts = this.selChar.chaFile.custom.hair.parts;
@@ -681,7 +668,6 @@ namespace HS2WearCustom
 			this.colorInfo[_idx].colorMain = _c;
 		}
 
-		// Token: 0x06000029 RID: 41 RVA: 0x00004198 File Offset: 0x00002398
 		private void OnClickColorMainDef(int _idx)
 		{
 			if (this.wearType == 1)
@@ -723,7 +709,6 @@ namespace HS2WearCustom
 			Singleton<global::Studio.Studio>.Instance.colorPalette.visible = false;
 		}
 
-		// Token: 0x0600002A RID: 42 RVA: 0x00004290 File Offset: 0x00002490
 		private void ChangeHairDef(CustomHairColorPreset.HairColorInfo preset)
 		{
 			ChaFileHair.PartsInfo[] parts = this.selChar.chaFile.custom.hair.parts;
@@ -751,7 +736,6 @@ namespace HS2WearCustom
 			this.colorInfo[0].inputGlossiness.value = preset.smoothness;
 		}
 
-		// Token: 0x0600002B RID: 43 RVA: 0x000043F2 File Offset: 0x000025F2
 		private void OnValueChangeMetallic(int _idx, float _value)
 		{
 			if (this.isUpdateInfo)
@@ -761,7 +745,6 @@ namespace HS2WearCustom
 			this.ChangeMetallic(_idx, _value);
 		}
 
-		// Token: 0x0600002C RID: 44 RVA: 0x00004408 File Offset: 0x00002608
 		private void OnEndEditMetallic(int _idx, string _text)
 		{
 			if (this.isUpdateInfo)
@@ -774,7 +757,6 @@ namespace HS2WearCustom
 			this.ChangeMetallic(_idx, value2);
 		}
 
-		// Token: 0x0600002D RID: 45 RVA: 0x00004448 File Offset: 0x00002648
 		private void OnClickMetallicDef(int _idx)
 		{
 			float value = 0f;
@@ -805,7 +787,6 @@ namespace HS2WearCustom
 			this.ChangeMetallic(_idx, value);
 		}
 
-		// Token: 0x0600002E RID: 46 RVA: 0x000044AC File Offset: 0x000026AC
 		private void ChangeMetallic(int _idx, float _value)
 		{
 			if (this.wearType == 1)
@@ -839,7 +820,6 @@ namespace HS2WearCustom
 			this.colorInfo[_idx].inputMetallic.value = _value;
 		}
 
-		// Token: 0x0600002F RID: 47 RVA: 0x000045BF File Offset: 0x000027BF
 		private void OnValueChangeGlossiness(int _idx, float _value)
 		{
 			if (this.isUpdateInfo)
@@ -849,7 +829,6 @@ namespace HS2WearCustom
 			this.ChangeGlossiness(_idx, _value);
 		}
 
-		// Token: 0x06000030 RID: 48 RVA: 0x000045D4 File Offset: 0x000027D4
 		private void OnEndEditGlossiness(int _idx, string _text)
 		{
 			float value = 0f;
@@ -858,7 +837,6 @@ namespace HS2WearCustom
 			this.ChangeGlossiness(_idx, value2);
 		}
 
-		// Token: 0x06000031 RID: 49 RVA: 0x0000460C File Offset: 0x0000280C
 		private void OnClickGlossinessDef(int _idx)
 		{
 			if (this.isUpdateInfo)
@@ -893,7 +871,6 @@ namespace HS2WearCustom
 			this.ChangeGlossiness(_idx, value);
 		}
 
-		// Token: 0x06000032 RID: 50 RVA: 0x00004678 File Offset: 0x00002878
 		private void ChangeGlossiness(int _idx, float _value)
 		{
 			if (this.wearType == 1)
@@ -927,7 +904,6 @@ namespace HS2WearCustom
 			this.colorInfo[_idx].inputGlossiness.value = _value;
 		}
 
-		// Token: 0x06000033 RID: 51 RVA: 0x0000478C File Offset: 0x0000298C
 		private void OnClickPattern(int _idx)
 		{
 			if (this.wearType == 1)
@@ -952,7 +928,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000034 RID: 52 RVA: 0x00004800 File Offset: 0x00002A00
 		private void OnClickColorPattern(int _idx)
 		{
 			if (this.wearType == 1)
@@ -981,7 +956,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000035 RID: 53 RVA: 0x0000492C File Offset: 0x00002B2C
 		private void OnClickColorPatternDef(int _idx)
 		{
 			if (this.wearType == 1)
@@ -997,7 +971,6 @@ namespace HS2WearCustom
 			Singleton<global::Studio.Studio>.Instance.colorPalette.visible = false;
 		}
 
-		// Token: 0x06000036 RID: 54 RVA: 0x00004A08 File Offset: 0x00002C08
 		private void OnValueChangeUT(int _idx, int li, float _value)
 		{
 			if (this.isUpdateInfo)
@@ -1007,7 +980,6 @@ namespace HS2WearCustom
 			this.ChangeUT(_idx, li, _value);
 		}
 
-		// Token: 0x06000037 RID: 55 RVA: 0x00004A1C File Offset: 0x00002C1C
 		private void OnEndEditUT(int _idx, int li, string _text)
 		{
 			if (this.isUpdateInfo)
@@ -1022,7 +994,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x06000038 RID: 56 RVA: 0x00004A54 File Offset: 0x00002C54
 		private void ChangeUT(int _idx, int li, float _value)
 		{
 			if (this.wearType == 1)
@@ -1062,7 +1033,6 @@ namespace HS2WearCustom
 			this.colorInfo[_idx][li].value = _value;
 		}
 
-		// Token: 0x06000039 RID: 57 RVA: 0x00004B54 File Offset: 0x00002D54
 		private void OnValueChangeRot(int _idx, float _value)
 		{
 			if (this.isUpdateInfo)
@@ -1080,7 +1050,6 @@ namespace HS2WearCustom
 			this.colorInfo[_idx][4].value = _value;
 		}
 
-		// Token: 0x0600003A RID: 58 RVA: 0x00004C08 File Offset: 0x00002E08
 		private void OnValueChangeBreak(float _value)
 		{
 			if (this.isUpdateInfo)
@@ -1106,7 +1075,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x0600003B RID: 59 RVA: 0x00004CA0 File Offset: 0x00002EA0
 		private void OnClickColorHairAcs(int _idx)
 		{
 			if (this.wearType == 2)
@@ -1133,8 +1101,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x17000005 RID: 5
-		// (get) Token: 0x0600003C RID: 60 RVA: 0x00004DA4 File Offset: 0x00002FA4
 		public OCIChar ociChar
 		{
 			get
@@ -1143,8 +1109,6 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x17000006 RID: 6
-		// (get) Token: 0x0600003D RID: 61 RVA: 0x00004DB1 File Offset: 0x00002FB1
 		public ChaListDefine.CategoryNo selectGroup
 		{
 			get
@@ -1153,57 +1117,43 @@ namespace HS2WearCustom
 			}
 		}
 
-		// Token: 0x04000011 RID: 17
 		public MPCharCtrl mpCharCtrl;
 
-		// Token: 0x04000012 RID: 18
 		public AIWearGroupList aiWGList;
 
-		// Token: 0x04000013 RID: 19
 		[SerializeField]
 		public AIWearControllerUI.ColorInfo[] colorInfo;
 
-		// Token: 0x04000014 RID: 20
 		[SerializeField]
 		public AIWearControllerUI.ColorCombination colorShadow;
 
-		// Token: 0x04000015 RID: 21
 		[SerializeField]
 		public AIWearControllerUI.ColorInputCombination emissionInfo;
 
-		// Token: 0x04000016 RID: 22
 		[SerializeField]
 		public AIWearControllerUI.InputCombination inputAlpha;
 
-		// Token: 0x04000017 RID: 23
 		[SerializeField]
 		public AIWearControllerUI.InputCombination inputLightCancel;
 
-		// Token: 0x04000018 RID: 24
 		[SerializeField]
 		public AIWearControllerUI.ColorInputCombination lineInfo;
 
-		// Token: 0x04000019 RID: 25
 		[SerializeField]
 		[Header("HairSet")]
 		private AIWearControllerUI.HairSetInfo hairSetInfo = new AIWearControllerUI.HairSetInfo();
 
-		// Token: 0x0400001A RID: 26
 		[SerializeField]
 		public AIWearControllerUI.OptionInfo optionInfo = new AIWearControllerUI.OptionInfo();
 
-		// Token: 0x0400001B RID: 27
 		[SerializeField]
 		[Header("PatternModeSet")]
 		public CanvasGroup cgPattern;
 
-		// Token: 0x0400001C RID: 28
 		private AIWearControllerUI.ColorCombination[] hairAcsColors;
 
-		// Token: 0x0400001D RID: 29
 		private bool isUpdateInfo;
 
-		// Token: 0x0400001E RID: 30
 		private int wearType = -1;
 
 		private ChaControl selChar;
@@ -1217,14 +1167,11 @@ namespace HS2WearCustom
 		private float[] origSliderMin;
 		private float[] origSliderMax;
 
-		// Token: 0x04000021 RID: 33
 		private CustomHairColorPreset.HairColorInfo[] items;
 
-		// Token: 0x0200000A RID: 10
 		[Serializable]
 		public class ColorInfo
 		{
-			// Token: 0x06000041 RID: 65 RVA: 0x00004DF4 File Offset: 0x00002FF4
 			public void Init(Transform root)
 			{
 				this.objRoot = root.gameObject;
@@ -1271,8 +1218,6 @@ namespace HS2WearCustom
 				this._input[4].Init(root9);
 			}
 
-			// Token: 0x17000007 RID: 7
-			// (set) Token: 0x06000042 RID: 66 RVA: 0x0000506B File Offset: 0x0000326B
 			public Color colorMain
 			{
 				set
@@ -1281,8 +1226,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x17000008 RID: 8
-			// (set) Token: 0x06000043 RID: 67 RVA: 0x0000507E File Offset: 0x0000327E
 			public string textPattern
 			{
 				set
@@ -1291,8 +1234,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x17000009 RID: 9
-			// (set) Token: 0x06000044 RID: 68 RVA: 0x0000508C File Offset: 0x0000328C
 			public Color colorPattern
 			{
 				set
@@ -1301,8 +1242,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x1700000A RID: 10
-			// (set) Token: 0x06000045 RID: 69 RVA: 0x0000509F File Offset: 0x0000329F
 			public bool isOn
 			{
 				set
@@ -1311,7 +1250,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x1700000B RID: 11
 			public AIWearControllerUI.InputCombination this[int _idx]
 			{
 				get
@@ -1320,9 +1258,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x1700000C RID: 12
-			// (get) Token: 0x06000047 RID: 71 RVA: 0x000050BB File Offset: 0x000032BB
-			// (set) Token: 0x06000048 RID: 72 RVA: 0x000050C8 File Offset: 0x000032C8
 			public bool enable
 			{
 				get
@@ -1338,8 +1273,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x1700000D RID: 13
-			// (set) Token: 0x06000049 RID: 73 RVA: 0x000050E4 File Offset: 0x000032E4
 			public bool EnableMetallic
 			{
 				set
@@ -1348,8 +1281,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x1700000E RID: 14
-			// (set) Token: 0x0600004A RID: 74 RVA: 0x000050F3 File Offset: 0x000032F3
 			public bool EnablePattern
 			{
 				set
@@ -1358,8 +1289,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x1700000F RID: 15
-			// (set) Token: 0x0600004B RID: 75 RVA: 0x00005104 File Offset: 0x00003304
 			public bool EnablePattenDetail
 			{
 				set
@@ -1373,50 +1302,36 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x04000022 RID: 34
 			public GameObject objRoot;
 
-			// Token: 0x04000023 RID: 35
 			public AIWearControllerUI.ColorCombination _colorMain = new AIWearControllerUI.ColorCombination();
 
-			// Token: 0x04000024 RID: 36
 			[Header("MetallicSet")]
 			public GameObject objMetallic;
 
-			// Token: 0x04000025 RID: 37
 			public AIWearControllerUI.InputCombination inputMetallic = new AIWearControllerUI.InputCombination();
 
-			// Token: 0x04000026 RID: 38
 			public AIWearControllerUI.InputCombination inputGlossiness = new AIWearControllerUI.InputCombination();
 
-			// Token: 0x04000027 RID: 39
 			[Header("PatternSet")]
 			public GameObject objPattern;
 
-			// Token: 0x04000028 RID: 40
 			public Button _buttonPattern;
 
-			// Token: 0x04000029 RID: 41
 			public TextMeshProUGUI _textPattern;
 
-			// Token: 0x0400002A RID: 42
 			public AIWearControllerUI.ColorCombination _colorPattern = new AIWearControllerUI.ColorCombination();
 
-			// Token: 0x0400002B RID: 43
 			public GameObject _toggleObj;
 
-			// Token: 0x0400002C RID: 44
 			public Toggle _toggleClamp;
 
-			// Token: 0x0400002D RID: 45
 			public AIWearControllerUI.InputCombination[] _input;
 		}
 
-		// Token: 0x0200000B RID: 11
 		[Serializable]
 		public class ColorCombination
 		{
-			// Token: 0x0600004D RID: 77 RVA: 0x00005178 File Offset: 0x00003378
 			public void Init(Transform root)
 			{
 				this.objRoot = root.gameObject;
@@ -1429,8 +1344,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x17000010 RID: 16
-			// (set) Token: 0x0600004E RID: 78 RVA: 0x000051DE File Offset: 0x000033DE
 			public bool interactable
 			{
 				set
@@ -1443,9 +1356,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x17000011 RID: 17
-			// (get) Token: 0x0600004F RID: 79 RVA: 0x00005205 File Offset: 0x00003405
-			// (set) Token: 0x06000050 RID: 80 RVA: 0x00005212 File Offset: 0x00003412
 			public Color color
 			{
 				get
@@ -1458,8 +1368,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x17000012 RID: 18
-			// (set) Token: 0x06000051 RID: 81 RVA: 0x00005220 File Offset: 0x00003420
 			public bool active
 			{
 				set
@@ -1468,24 +1376,18 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x0400002E RID: 46
 			public GameObject objRoot;
 
-			// Token: 0x0400002F RID: 47
 			public Image imageColor;
 
-			// Token: 0x04000030 RID: 48
 			public Button buttonColor;
 
-			// Token: 0x04000031 RID: 49
 			public Button buttonColorDefault;
 		}
 
-		// Token: 0x0200000C RID: 12
 		[Serializable]
 		public class InputCombination
 		{
-			// Token: 0x06000053 RID: 83 RVA: 0x00005230 File Offset: 0x00003430
 			public void Init(Transform root)
 			{
 				this.objRoot = root.gameObject;
@@ -1498,8 +1400,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x17000013 RID: 19
-			// (set) Token: 0x06000054 RID: 84 RVA: 0x00005296 File Offset: 0x00003496
 			public bool interactable
 			{
 				set
@@ -1513,9 +1413,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x17000014 RID: 20
-			// (get) Token: 0x06000055 RID: 85 RVA: 0x000052C9 File Offset: 0x000034C9
-			// (set) Token: 0x06000056 RID: 86 RVA: 0x000052D8 File Offset: 0x000034D8
 			public string text
 			{
 				get
@@ -1531,9 +1428,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x17000015 RID: 21
-			// (get) Token: 0x06000057 RID: 87 RVA: 0x0000530C File Offset: 0x0000350C
-			// (set) Token: 0x06000058 RID: 88 RVA: 0x00005319 File Offset: 0x00003519
 			public float value
 			{
 				get
@@ -1547,8 +1441,6 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x17000016 RID: 22
-			// (set) Token: 0x06000059 RID: 89 RVA: 0x0000533E File Offset: 0x0000353E
 			public bool active
 			{
 				set
@@ -1557,25 +1449,18 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x04000032 RID: 50
 			public GameObject objRoot;
 
-			// Token: 0x04000033 RID: 51
 			public TMP_InputField input;
 
-			// Token: 0x04000034 RID: 52
 			public Slider slider;
 
-			// Token: 0x04000035 RID: 53
 			public Button buttonDefault;
 		}
 
-		// Token: 0x0200000D RID: 13
 		[Serializable]
 		public class ColorInputCombination
 		{
-			// Token: 0x17000017 RID: 23
-			// (set) Token: 0x0600005B RID: 91 RVA: 0x0000534D File Offset: 0x0000354D
 			public bool active
 			{
 				set
@@ -1584,23 +1469,16 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x04000036 RID: 54
 			public GameObject objRoot;
 
-			// Token: 0x04000037 RID: 55
 			public AIWearControllerUI.ColorCombination color = new AIWearControllerUI.ColorCombination();
 
-			// Token: 0x04000038 RID: 56
 			public AIWearControllerUI.InputCombination input = new AIWearControllerUI.InputCombination();
 		}
 
-		// Token: 0x0200000E RID: 14
 		[Serializable]
 		public class OptionInfo
 		{
-			// Token: 0x17000018 RID: 24
-			// (get) Token: 0x0600005D RID: 93 RVA: 0x0000537A File Offset: 0x0000357A
-			// (set) Token: 0x0600005E RID: 94 RVA: 0x00005387 File Offset: 0x00003587
 			public bool Active
 			{
 				get
@@ -1613,20 +1491,14 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x04000039 RID: 57
 			public GameObject objRoot;
 
-			// Token: 0x0400003A RID: 58
 			public Toggle toggleAll;
 		}
 
-		// Token: 0x0200000F RID: 15
 		[Serializable]
 		public class HairSetInfo
 		{
-			// Token: 0x17000019 RID: 25
-			// (get) Token: 0x06000060 RID: 96 RVA: 0x00005396 File Offset: 0x00003596
-			// (set) Token: 0x06000061 RID: 97 RVA: 0x000053A3 File Offset: 0x000035A3
 			public bool Active
 			{
 				get
@@ -1639,13 +1511,10 @@ namespace HS2WearCustom
 				}
 			}
 
-			// Token: 0x0400003B RID: 59
 			public GameObject objRoot;
 
-			// Token: 0x0400003C RID: 60
 			public Toggle toggleSame;
 
-			// Token: 0x0400003D RID: 61
 			public Toggle toggleDetail;
 		}
 	}
