@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Build & Deploy",
+      "type": "node",
+      "request": "launch",
+      "preLaunchTask": "Build & Deploy",
+      "console": "integratedTerminal"
+    }
+  ]
+}

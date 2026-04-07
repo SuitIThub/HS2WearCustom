@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HS2WearCustom", "HS2WearCustom\HS2WearCustom.csproj", "{01606B4A-1292-420F-A997-9B916AA3782E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01606B4A-1292-420F-A997-9B916AA3782E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01606B4A-1292-420F-A997-9B916AA3782E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01606B4A-1292-420F-A997-9B916AA3782E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01606B4A-1292-420F-A997-9B916AA3782E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

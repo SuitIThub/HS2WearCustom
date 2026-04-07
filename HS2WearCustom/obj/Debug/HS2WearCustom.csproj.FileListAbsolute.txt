@@ -1,0 +1,2 @@
+H:\Dateien\Dokumente\Repos\HS2WearCustom\HS2WearCustom\obj\Debug\HS2WearCustom.csproj.AssemblyReference.cache
+H:\Dateien\Dokumente\Repos\HS2WearCustom\HS2WearCustom\obj\Debug\HS2WearCustom.csproj.CoreCompileInputs.cache
