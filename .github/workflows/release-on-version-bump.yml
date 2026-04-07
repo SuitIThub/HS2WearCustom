@@ -1,0 +1,132 @@
+# Publishes a GitHub Release (DLL + tag vX.Y.Z) when:
+# - the BepInPlugin version in HS2WearCustom.cs changed since the previous commit, OR
+# - there is still no git tag vX.Y.Z (covers the first release while the version line is unchanged).
+
+name: Release on plugin version bump
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "HS2WearCustom/**"
+      - ".github/workflows/release-on-version-bump.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  detect-version-change:
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.detect.outputs.version }}
+      should_release: ${{ steps.detect.outputs.should_release }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Fetch remote tags (first release / tags only on origin)
+        run: git fetch --tags --quiet origin 2>/dev/null || true
+
+      - name: Decide if we should build and release
+        id: detect
+        run: |
+          python3 << 'PY'
+          import os
+          import re
+          import subprocess
+
+          def extract_version(text: str) -> str:
+              m = re.search(
+                  r'\[BepInPlugin\("[^"]+",\s*"[^"]+",\s*"([^"]+)"\)\]',
+                  text,
+                  re.MULTILINE,
+              )
+              return m.group(1) if m else ""
+
+          def tag_exists(version: str) -> bool:
+              r = subprocess.run(
+                  ["git", "rev-parse", "-q", "--verify", f"refs/tags/v{version}"],
+                  capture_output=True,
+              )
+              return r.returncode == 0
+
+          new_ver = extract_version(
+              open("HS2WearCustom/HS2WearCustom.cs", encoding="utf-8").read()
+          )
+          try:
+              old_txt = subprocess.check_output(
+                  ["git", "show", "HEAD^:HS2WearCustom/HS2WearCustom.cs"],
+                  text=True,
+                  stderr=subprocess.DEVNULL,
+              )
+              old_ver = extract_version(old_txt)
+          except subprocess.CalledProcessError:
+              old_ver = ""
+
+          # Release if version is set and either it changed, or this version was never tagged yet
+          # (so the first public release works even when the repo already had 0.2.0 for several commits).
+          version_bumped = bool(new_ver and new_ver != old_ver)
+          no_tag_yet = bool(new_ver and not tag_exists(new_ver))
+          should = version_bumped or no_tag_yet
+
+          out = os.environ["GITHUB_OUTPUT"]
+          with open(out, "a", encoding="utf-8") as f:
+              f.write(f"version={new_ver}\n")
+              f.write(f"should_release={'true' if should else 'false'}\n")
+          print(
+              f"version={new_ver!r} previous={old_ver!r} "
+              f"version_bumped={version_bumped} no_tag_yet={no_tag_yet} should_release={should}"
+          )
+          PY
+
+  build-and-release:
+    needs: detect-version-change
+    if: needs.detect-version-change.outputs.should_release == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Skip if release tag already exists
+        id: tag
+        env:
+          VERSION: ${{ needs.detect-version-change.outputs.version }}
+        run: |
+          git fetch --tags --quiet 2>/dev/null || true
+          if git rev-parse -q --verify "refs/tags/v${VERSION}" >/dev/null 2>&1; then
+            echo "Tag v${VERSION} already exists — skipping build and release."
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-dotnet@v4
+        if: steps.tag.outputs.exists != 'true'
+        with:
+          dotnet-version: "9.x"
+
+      - name: Restore and build (Release)
+        if: steps.tag.outputs.exists != 'true'
+        run: dotnet build HS2WearCustom/HS2WearCustom.csproj -c Release
+
+      - name: Create GitHub Release
+        if: steps.tag.outputs.exists != 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ needs.detect-version-change.outputs.version }}
+        run: |
+          DLL="HS2WearCustom/bin/Release/HS2WearCustom.dll"
+          test -f "$DLL"
+          gh release create "v${VERSION}" \
+            --title "HS2WearCustom v${VERSION}" \
+            --generate-notes \
+            "$DLL"
