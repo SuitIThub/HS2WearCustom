@@ -1,90 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{01606B4A-1292-420F-A997-9B916AA3782E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <TargetFramework>net462</TargetFramework>
     <RootNamespace>HS2WearCustom</RootNamespace>
     <AssemblyName>HS2WearCustom</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <RuntimeIdentifiers>win</RuntimeIdentifiers>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony20">
-      <HintPath>D:\Honey Select\BepInEx\core\0Harmony20.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>D:\Honey Select\StudioNEOV2_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>D:\Honey Select\StudioNEOV2_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="BepInEx">
-      <HintPath>D:\Honey Select\BepInEx\core\BepInEx.dll</HintPath>
-    </Reference>
-    <Reference Include="BepInEx.Harmony">
-      <HintPath>D:\Honey Select\BepInEx\core\BepInEx.Harmony.dll</HintPath>
-    </Reference>
-    <Reference Include="IL">
-      <HintPath>D:\Honey Select\StudioNEOV2_Data\Managed\IL.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="UniRx">
-      <HintPath>D:\Honey Select\StudioNEOV2_Data\Managed\UniRx.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:\Honey Select\StudioNEOV2_Data\Managed\Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>D:\Honey Select\StudioNEOV2_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule">
-      <HintPath>D:\Honey Select\StudioNEOV2_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>D:\Honey Select\StudioNEOV2_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>D:\Honey Select\StudioNEOV2_Data\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule">
-      <HintPath>D:\Honey Select\StudioNEOV2_Data\Managed\UnityEngine.UIModule.dll</HintPath>
-    </Reference>
+    <PackageReference Include="IllusionLibs.BepInEx" Version="5.4.22" />
+    <PackageReference Include="IllusionLibs.BepInEx.Harmony" Version="2.9.0" />
+    <PackageReference Include="IllusionLibs.HoneySelect2.Assembly-CSharp" Version="2020.5.29.5" />
+    <PackageReference Include="IllusionLibs.HoneySelect2.Assembly-CSharp-firstpass" Version="2020.5.29.5" />
+    <PackageReference Include="IllusionLibs.HoneySelect2.IL" Version="2020.5.29.5" />
+    <PackageReference Include="IllusionLibs.HoneySelect2.UniRx" Version="2020.5.29.5" />
+    <PackageReference Include="IllusionLibs.HoneySelect2.Unity.TextMeshPro" Version="2018.4.11.4" />
+    <PackageReference Include="IllusionLibs.HoneySelect2.UnityEngine.CoreModule" Version="2018.4.11.4" />
+    <PackageReference Include="IllusionLibs.HoneySelect2.UnityEngine.IMGUIModule" Version="2018.4.11.4" />
+    <PackageReference Include="IllusionLibs.HoneySelect2.UnityEngine.UI" Version="2018.4.11.4" />
+    <PackageReference Include="IllusionLibs.HoneySelect2.UnityEngine.UIModule" Version="2018.4.11.4" />
   </ItemGroup>
-  <ItemGroup>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AIWCHooks.cs" />
-    <Compile Include="AIWCUI.cs" />
-    <Compile Include="AIWearControllerUI.cs" />
-    <Compile Include="AIWearGroupList.cs" />
-    <Compile Include="AIWearPartList.cs" />
-    <Compile Include="HS2WearCustom.cs" />
-    <Compile Include="PrivateAdapter.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StudioCharaListUtil.cs" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

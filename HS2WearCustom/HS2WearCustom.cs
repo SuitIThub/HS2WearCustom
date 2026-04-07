@@ -1,6 +1,6 @@
 using System;
+using System.Reflection;
 using BepInEx;
-using BepInEx.Harmony;
 using BepInEx.Logging;
 using HarmonyLib;
 using Studio;
@@ -15,10 +15,13 @@ namespace HS2WearCustom
 		internal void Main()
 		{
 			HS2WearCustom.Logger = base.Logger;
-			Harmony harmony = Harmony.CreateAndPatchAll(typeof(AIWCHooks), null);
-			harmony.Patch(typeof(MPCharCtrl).GetNestedType("CostumeInfo", AccessTools.all).GetMethod("Init"), null, new HarmonyMethod(typeof(AIWCUI).GetMethod("InitUI", AccessTools.all)), null, null);
-			harmony.Patch(typeof(MPCharCtrl).GetNestedType("CostumeInfo", AccessTools.all).GetMethod("Init"), null, new HarmonyMethod(typeof(StudioCharaListUtil).GetMethod("Install", AccessTools.all)), null, null);
-			harmony.Patch(typeof(CharaList).GetMethod("InitCharaList"), null, new HarmonyMethod(typeof(StudioCharaListUtil).GetMethod("Install", AccessTools.all)), null, null);
+			Harmony harmony = new Harmony("Suit-Ji.HS2WearCustom");
+			harmony.PatchAll(typeof(AIWCHooks));
+			Type costumeInfo = typeof(MPCharCtrl).GetNestedType("CostumeInfo", AccessTools.all);
+			MethodBase costumeInit = AccessTools.Method(costumeInfo, "Init");
+			harmony.Patch(costumeInit, postfix: new HarmonyMethod(typeof(AIWCUI).GetMethod("InitUI", AccessTools.all)));
+			harmony.Patch(costumeInit, postfix: new HarmonyMethod(typeof(StudioCharaListUtil).GetMethod("Install", AccessTools.all)));
+			harmony.Patch(AccessTools.Method(typeof(CharaList), "InitCharaList"), postfix: new HarmonyMethod(typeof(StudioCharaListUtil).GetMethod("Install", AccessTools.all)));
 		}
 
 		internal new static ManualLogSource Logger;

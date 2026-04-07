@@ -1,0 +1,118 @@
+{
+  "format": 1,
+  "restore": {
+    "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj": {}
+  },
+  "projects": {
+    "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj",
+        "projectName": "HS2WearCustom",
+        "projectPath": "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj",
+        "packagesPath": "C:\\Users\\bigma\\.nuget\\packages\\",
+        "outputPath": "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "H:\\Programme\\VisualStudio\\VisualStudioShared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\NuGet.Config",
+          "C:\\Users\\bigma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net462"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.bepinex.dev/v3/index.json": {},
+          "https://pkgs.dev.azure.com/IllusionMods/Nuget/_packaging/IllusionMods/nuget/v3/index.json": {},
+          "https://pkgs.dev.azure.com/IllusionMods/Nuget/_packaging/IllusionMods/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net462": {
+            "targetAlias": "net462",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net462": {
+          "targetAlias": "net462",
+          "dependencies": {
+            "IllusionLibs.BepInEx": {
+              "target": "Package",
+              "version": "[5.4.22, )"
+            },
+            "IllusionLibs.BepInEx.Harmony": {
+              "target": "Package",
+              "version": "[2.9.0, )"
+            },
+            "IllusionLibs.HoneySelect2.Assembly-CSharp": {
+              "target": "Package",
+              "version": "[2020.5.29.5, )"
+            },
+            "IllusionLibs.HoneySelect2.Assembly-CSharp-firstpass": {
+              "target": "Package",
+              "version": "[2020.5.29.5, )"
+            },
+            "IllusionLibs.HoneySelect2.IL": {
+              "target": "Package",
+              "version": "[2020.5.29.5, )"
+            },
+            "IllusionLibs.HoneySelect2.UniRx": {
+              "target": "Package",
+              "version": "[2020.5.29.5, )"
+            },
+            "IllusionLibs.HoneySelect2.Unity.TextMeshPro": {
+              "target": "Package",
+              "version": "[2018.4.11.4, )"
+            },
+            "IllusionLibs.HoneySelect2.UnityEngine.CoreModule": {
+              "target": "Package",
+              "version": "[2018.4.11.4, )"
+            },
+            "IllusionLibs.HoneySelect2.UnityEngine.IMGUIModule": {
+              "target": "Package",
+              "version": "[2018.4.11.4, )"
+            },
+            "IllusionLibs.HoneySelect2.UnityEngine.UI": {
+              "target": "Package",
+              "version": "[2018.4.11.4, )"
+            },
+            "IllusionLibs.HoneySelect2.UnityEngine.UIModule": {
+              "target": "Package",
+              "version": "[2018.4.11.4, )"
+            },
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

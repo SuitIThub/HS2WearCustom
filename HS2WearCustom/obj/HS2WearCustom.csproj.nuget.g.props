@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
+    <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">$(MSBuildThisFileDirectory)project.assets.json</ProjectAssetsFile>
+    <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">$(UserProfile)\.nuget\packages\</NuGetPackageRoot>
+    <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">C:\Users\bigma\.nuget\packages\;H:\Programme\VisualStudio\VisualStudioShared\NuGetPackages</NuGetPackageFolders>
+    <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
+    <NuGetToolVersion Condition=" '$(NuGetToolVersion)' == '' ">6.14.0</NuGetToolVersion>
+  </PropertyGroup>
+  <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <SourceRoot Include="C:\Users\bigma\.nuget\packages\" />
+    <SourceRoot Include="H:\Programme\VisualStudio\VisualStudioShared\NuGetPackages\" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgIllusionLibs_HoneySelect2_UnityEngine_UIModule Condition=" '$(PkgIllusionLibs_HoneySelect2_UnityEngine_UIModule)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.honeyselect2.unityengine.uimodule\2018.4.11.4</PkgIllusionLibs_HoneySelect2_UnityEngine_UIModule>
+    <PkgIllusionLibs_HoneySelect2_UnityEngine_UI Condition=" '$(PkgIllusionLibs_HoneySelect2_UnityEngine_UI)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.honeyselect2.unityengine.ui\2018.4.11.4</PkgIllusionLibs_HoneySelect2_UnityEngine_UI>
+    <PkgIllusionLibs_HoneySelect2_UnityEngine_IMGUIModule Condition=" '$(PkgIllusionLibs_HoneySelect2_UnityEngine_IMGUIModule)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.honeyselect2.unityengine.imguimodule\2018.4.11.4</PkgIllusionLibs_HoneySelect2_UnityEngine_IMGUIModule>
+    <PkgIllusionLibs_HoneySelect2_UnityEngine_CoreModule Condition=" '$(PkgIllusionLibs_HoneySelect2_UnityEngine_CoreModule)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.honeyselect2.unityengine.coremodule\2018.4.11.4</PkgIllusionLibs_HoneySelect2_UnityEngine_CoreModule>
+    <PkgIllusionLibs_HoneySelect2_Unity_TextMeshPro Condition=" '$(PkgIllusionLibs_HoneySelect2_Unity_TextMeshPro)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.honeyselect2.unity.textmeshpro\2018.4.11.4</PkgIllusionLibs_HoneySelect2_Unity_TextMeshPro>
+    <PkgIllusionLibs_HoneySelect2_UniRx Condition=" '$(PkgIllusionLibs_HoneySelect2_UniRx)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.honeyselect2.unirx\2020.5.29.5</PkgIllusionLibs_HoneySelect2_UniRx>
+    <PkgIllusionLibs_HoneySelect2_IL Condition=" '$(PkgIllusionLibs_HoneySelect2_IL)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.honeyselect2.il\2020.5.29.5</PkgIllusionLibs_HoneySelect2_IL>
+    <PkgIllusionLibs_HoneySelect2_Assembly-CSharp-firstpass Condition=" '$(PkgIllusionLibs_HoneySelect2_Assembly-CSharp-firstpass)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.honeyselect2.assembly-csharp-firstpass\2020.5.29.5</PkgIllusionLibs_HoneySelect2_Assembly-CSharp-firstpass>
+    <PkgIllusionLibs_HoneySelect2_Assembly-CSharp Condition=" '$(PkgIllusionLibs_HoneySelect2_Assembly-CSharp)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.honeyselect2.assembly-csharp\2020.5.29.5</PkgIllusionLibs_HoneySelect2_Assembly-CSharp>
+    <PkgIllusionLibs_BepInEx_Harmony Condition=" '$(PkgIllusionLibs_BepInEx_Harmony)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.bepinex.harmony\2.9.0</PkgIllusionLibs_BepInEx_Harmony>
+    <PkgIllusionLibs_BepInEx Condition=" '$(PkgIllusionLibs_BepInEx)' == '' ">C:\Users\bigma\.nuget\packages\illusionlibs.bepinex\5.4.22</PkgIllusionLibs_BepInEx>
+  </PropertyGroup>
+</Project>

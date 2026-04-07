@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using AIChara;
-using BepInEx.Logging;
 using CharaCustom;
 using Manager;
 using Studio;
@@ -148,16 +147,7 @@ namespace HS2WearCustom
 				{
 					parentKey = AIWearPartList.ResolveAccessoryParentKey(charInfo, slot, accType, info.id);
 				}
-				AIWearPartList.LogAcc(string.Format(
-					"ChangeClothLink: slot={0} accType={1} listItem id={2} name=\"{3}\" category(selectType)={4} listInfo={5} resolvedParentKey=\"{6}\"",
-					slot,
-					accType,
-					info.id,
-					info.name ?? "",
-					(int)this.selectType,
-					(listInfo != null) ? "ok" : "null",
-					parentKey ?? ""));
-				base.StartCoroutine(this.ApplyAccessoryAfterLoad(charInfo, slot, accType, info.id, parentKey, listInfo));
+				base.StartCoroutine(this.ApplyAccessoryAfterLoad(charInfo, slot, accType, info.id, parentKey));
 				return;
 			}
 			this.wearCtrl.UpdateInfo();
@@ -172,25 +162,14 @@ namespace HS2WearCustom
 			Character mc = UnityEngine.Object.FindObjectOfType<Character>();
 			if (mc == null)
 			{
-				AIWearPartList.LogAccWarn("TryGetAccessoryListInfo: Manager.Character not found in scene.");
 				return null;
 			}
 			ChaListControl clc = mc.chaListCtrl;
 			if (clc == null)
 			{
-				AIWearPartList.LogAccWarn("TryGetAccessoryListInfo: chaListCtrl is null.");
 				return null;
 			}
-			ListInfoBase listInfo = clc.GetListInfo(categoryNo, listId);
-			if (listInfo == null)
-			{
-				AIWearPartList.LogAccWarn(string.Format("TryGetAccessoryListInfo: GetListInfo(category={0}, id={1}) returned null.", (int)categoryNo, listId));
-			}
-			else
-			{
-				AIWearPartList.LogAcc(string.Format("TryGetAccessoryListInfo: GetListInfo(category={0}, id={1}) ok, Name=\"{2}\"", (int)categoryNo, listId, listInfo.Name ?? ""));
-			}
-			return listInfo;
+			return clc.GetListInfo(categoryNo, listId);
 		}
 
 		private static string TryGetParentKeyFromListInfo(ListInfoBase listInfo)
@@ -204,13 +183,11 @@ namespace HS2WearCustom
 				string text = listInfo.GetInfo(ChaListDefine.KeyType.Parent);
 				if (!string.IsNullOrEmpty(text))
 				{
-					AIWearPartList.LogAcc("TryGetParentKeyFromListInfo: KeyType.Parent -> \"" + text + "\"");
 					return text;
 				}
 			}
-			catch (Exception ex)
+			catch
 			{
-				AIWearPartList.LogAccWarn("TryGetParentKeyFromListInfo: " + ex.Message);
 			}
 			return string.Empty;
 		}
@@ -226,12 +203,10 @@ namespace HS2WearCustom
 				if (!object.ReferenceEquals(cha.nowCoordinate, cha.chaFile.coordinate))
 				{
 					cha.chaFile.coordinate = cha.nowCoordinate;
-					AIWearPartList.LogAcc("ApplyAccessory: chaFile.coordinate = nowCoordinate (ChaControl must use one ChaFileCoordinate; accessory FBX path reads chaFile.coordinate)");
 				}
 			}
-			catch (Exception ex)
+			catch
 			{
-				AIWearPartList.LogAccWarn("ApplyAccessory: TryUnifyCoordinateReferences: " + ex.Message);
 			}
 		}
 
@@ -246,12 +221,10 @@ namespace HS2WearCustom
 				if (!object.ReferenceEquals(cha.nowCoordinate.accessory, cha.chaFile.coordinate.accessory))
 				{
 					cha.chaFile.coordinate.accessory = cha.nowCoordinate.accessory;
-					AIWearPartList.LogAcc("ApplyAccessory: chaFile.coordinate.accessory shares nowCoordinate.accessory (fallback when coordinate refs still differ)");
 				}
 			}
-			catch (Exception ex)
+			catch
 			{
-				AIWearPartList.LogAccWarn("ApplyAccessory: TryUnifyAccessoryBuffers: " + ex.Message);
 			}
 		}
 
@@ -282,7 +255,6 @@ namespace HS2WearCustom
 			}
 			if (cha.lstCtrl != null)
 			{
-				AIWearPartList.LogAcc("ApplyAccessory: ChaControl.lstCtrl already set.");
 				return;
 			}
 			Manager.Character mc = UnityEngine.Object.FindObjectOfType<Manager.Character>();
@@ -293,17 +265,14 @@ namespace HS2WearCustom
 				{
 					pi.SetValue(cha, mc.chaListCtrl, null);
 				}
-				AIWearPartList.LogAcc("ApplyAccessory: ChaControl.lstCtrl was null; assigned Manager.Character.chaListCtrl (needed for accessory FBX load).");
 				return;
 			}
-			AIWearPartList.LogAccWarn("ApplyAccessory: ChaControl.lstCtrl is null and Manager.Character.chaListCtrl unavailable; accessory load will likely fail.");
 		}
 
 		private static string ResolveAccessoryParentKey(ChaControl cha, int slot, int accType, int id)
 		{
 			if (id <= 0)
 			{
-				AIWearPartList.LogAcc("ResolveParent: id<=0, returning empty parent key.");
 				return string.Empty;
 			}
 			try
@@ -311,38 +280,31 @@ namespace HS2WearCustom
 				string key = cha.GetAccessoryDefaultParentStr(accType, id);
 				if (!string.IsNullOrEmpty(key))
 				{
-					AIWearPartList.LogAcc(string.Format("ResolveParent: GetAccessoryDefaultParentStr(type={0}, id={1}) -> \"{2}\"", accType, id, key));
 					return key;
 				}
-				AIWearPartList.LogAcc(string.Format("ResolveParent: GetAccessoryDefaultParentStr(type={0}, id={1}) returned empty.", accType, id));
 			}
-			catch (Exception ex)
+			catch
 			{
-				AIWearPartList.LogAccWarn(string.Format("ResolveParent: GetAccessoryDefaultParentStr(type={0}, id={1}) failed: {2}", accType, id, ex.Message));
 			}
 			try
 			{
 				string key = cha.GetAccessoryDefaultParentStr(slot);
 				if (!string.IsNullOrEmpty(key))
 				{
-					AIWearPartList.LogAcc(string.Format("ResolveParent: GetAccessoryDefaultParentStr(slot={0}) -> \"{1}\"", slot, key));
 					return key;
 				}
-				AIWearPartList.LogAcc(string.Format("ResolveParent: GetAccessoryDefaultParentStr(slot={0}) returned empty.", slot));
 			}
-			catch (Exception ex)
+			catch
 			{
-				AIWearPartList.LogAccWarn(string.Format("ResolveParent: GetAccessoryDefaultParentStr(slot={0}) failed: {1}", slot, ex.Message));
 			}
 			return string.Empty;
 		}
 
-		private IEnumerator ApplyAccessoryAfterLoad(ChaControl cha, int slot, int accType, int id, string parentKey, ListInfoBase listInfo)
+		private IEnumerator ApplyAccessoryAfterLoad(ChaControl cha, int slot, int accType, int id, string parentKey)
 		{
 			// Pipeline: (1) unify chaFile.coordinate with nowCoordinate, (2) write ChaFileAccessory.parts[slot], (3) AssignCoordinate,
 			// (4) ChaControl.Reload(false,true,true,true,true) + AssignCoordinate — same as StudioCharaListUtil after editing nowCoordinate,
 			// (5) only if IsAccessory still false, run ChangeAccessoryAsync (slot,…). Async/wait alone never fixed Studio without Reload.
-			AIWearPartList.LogAcc(string.Format("ApplyAccessory: start slot={0} type={1} id={2} parentKey=\"{3}\"", slot, accType, id, parentKey ?? ""));
 			AIWearPartList.TryUnifyCoordinateReferences(cha);
 			AIWearPartList.TryUnifyAccessoryBuffers(cha);
 			ChaFileAccessory.PartsInfo pNow = cha.nowCoordinate.accessory.parts[slot];
@@ -366,62 +328,44 @@ namespace HS2WearCustom
 				pFile.id = id;
 				pFile.parentKey = parentKey;
 			}
-			AIWearPartList.LogAcc(string.Format("ApplyAccessory: parts set (sameRef={0}) type={1} id={2} parentKey=\"{3}\"", samePartRef, pNow.type, pNow.id, pNow.parentKey ?? ""));
-			bool sameCoordRef = object.ReferenceEquals(cha.nowCoordinate, cha.chaFile.coordinate);
-			AIWearPartList.LogAcc(string.Format("ApplyAccessory: refEq(nowCoordinate, chaFile.coordinate)={0}", sameCoordRef));
 			try
 			{
-				bool assignOk = cha.AssignCoordinate();
-				AIWearPartList.LogAcc("ApplyAccessory: AssignCoordinate() -> " + assignOk);
+				cha.AssignCoordinate();
 			}
-			catch (Exception ex)
+			catch
 			{
-				AIWearPartList.LogAccWarn("ApplyAccessory: AssignCoordinate() failed: " + ex.Message);
 			}
 			AIWearPartList.TryUnifyCoordinateReferences(cha);
 			AIWearPartList.TryUnifyAccessoryBuffers(cha);
 			AIWearPartList.ApplyAccessorySlotParts(cha, slot, accType, id, parentKey);
-			AIWearPartList.LogAcc("ApplyAccessory: slot parts re-applied after AssignCoordinate (in case it replaced coordinate data)");
 			try
 			{
-				bool reloadOk = cha.Reload(false, true, true, true, true);
-				AIWearPartList.LogAcc("ApplyAccessory: Reload(false,true,true,true,true) -> " + reloadOk + " (same sequence as StudioCharaListUtil.LoadAndChangeCloth after coord edit)");
+				cha.Reload(false, true, true, true, true);
 			}
-			catch (Exception ex)
+			catch
 			{
-				AIWearPartList.LogAccWarn("ApplyAccessory: Reload: " + ex.Message);
 			}
 			try
 			{
-				bool assignAfterReload = cha.AssignCoordinate();
-				AIWearPartList.LogAcc("ApplyAccessory: AssignCoordinate() after Reload -> " + assignAfterReload);
+				cha.AssignCoordinate();
 			}
-			catch (Exception ex)
+			catch
 			{
-				AIWearPartList.LogAccWarn("ApplyAccessory: AssignCoordinate after Reload: " + ex.Message);
 			}
 			AIWearPartList.TryUnifyCoordinateReferences(cha);
 			AIWearPartList.TryUnifyAccessoryBuffers(cha);
 			AIWearPartList.ApplyAccessorySlotParts(cha, slot, accType, id, parentKey);
 			AIWearPartList.EnsureChaListCtrlForAccessoryLoad(cha);
-			AIWearPartList.LogAccessoryDiagnostics(cha, listInfo);
 			AIWearPartList.TryEnsureLoadControlForAccessory(cha);
 			cha.InitializeAccessoryParent();
 			cha.SetAccessoryState(slot, true);
-			AIWearPartList.LogAcc(string.Format("ApplyAccessory: before load objTop={0} activeInHierarchy={1} enabled={2}", (cha.objTop != null) ? "ok" : "null", cha.gameObject.activeInHierarchy, cha.enabled));
 			bool prevEnabled = cha.enabled;
 			cha.enabled = true;
 			try
 			{
-				if (cha.IsAccessory(slot))
+				if (!cha.IsAccessory(slot))
 				{
-					AIWearPartList.LogAcc("ApplyAccessory: IsAccessory true after Reload+AssignCoordinate — skipping ChangeAccessoryAsync");
-				}
-				else
-				{
-					AIWearPartList.LogAcc("ApplyAccessory: still not loaded after Reload — ChangeAccessoryAsync(slot, type, id, parent, force:true, async:false)");
 					yield return cha.StartCoroutine(cha.ChangeAccessoryAsync(slot, accType, id, parentKey, true, false));
-					AIWearPartList.LogAccessoryRuntimeState(cha, slot, "right after ChangeAccessoryAsync(slot)");
 					if (!cha.IsAccessory(slot))
 					{
 						const int maxFrames = 180;
@@ -430,17 +374,11 @@ namespace HS2WearCustom
 							yield return null;
 							if (cha.IsAccessory(slot))
 							{
-								AIWearPartList.LogAcc(string.Format("ApplyAccessory: IsAccessory true after {0} frames (post ChangeAccessoryAsync)", i + 1));
 								break;
 							}
 						}
-						if (!cha.IsAccessory(slot))
-						{
-							AIWearPartList.LogAccWarn("ApplyAccessory: still not loaded. BonesFramework patches LoadCharaFbxDataAsync (try disabling it). HS2_BepisFixHS / IllusionFixes can also affect ChaControl.");
-						}
 					}
 				}
-				AIWearPartList.LogAccessoryRuntimeState(cha, slot, "after accessory load attempt");
 			}
 			finally
 			{
@@ -453,9 +391,8 @@ namespace HS2WearCustom
 				{
 					parentResolved = cha.GetAccessoryDefaultParentStr(slot);
 				}
-				catch (Exception ex)
+				catch
 				{
-					AIWearPartList.LogAccWarn("post-wait GetAccessoryDefaultParentStr(slot): " + ex.Message);
 				}
 			}
 			if (string.IsNullOrEmpty(parentResolved))
@@ -464,19 +401,13 @@ namespace HS2WearCustom
 				{
 					parentResolved = cha.GetAccessoryDefaultParentStr(accType, id);
 				}
-				catch (Exception ex)
+				catch
 				{
-					AIWearPartList.LogAccWarn("post-wait GetAccessoryDefaultParentStr(type,id): " + ex.Message);
 				}
 			}
 			if (!string.IsNullOrEmpty(parentResolved))
 			{
-				AIWearPartList.LogAcc("ApplyAccessory: ChangeAccessoryParent(\"" + parentResolved + "\")");
 				cha.ChangeAccessoryParent(slot, parentResolved);
-			}
-			else
-			{
-				AIWearPartList.LogAccWarn("ApplyAccessory: parentResolved still empty; skipping ChangeAccessoryParent.");
 			}
 			cha.SetAccessoryDefaultColor(slot);
 			cha.UpdateAccessoryMoveFromInfo(slot);
@@ -493,15 +424,13 @@ namespace HS2WearCustom
 				{
 					cha.ChangeAccessoryColor(slot);
 				}
-				catch (Exception ex)
+				catch
 				{
-					AIWearPartList.LogAccWarn("ApplyAccessory: ChangeAccessoryColor: " + ex.Message);
 				}
 			}
 			this.mpCharCtrl.CallPrivateMethod("UpdateInfo");
 			this.wearCtrl.UpdateInfo();
 			AIWearPartList.TryStudioCostumeInfoUpdate(this.mpCharCtrl, oci);
-			AIWearPartList.LogAccessoryRuntimeState(cha, slot, "after SetDefaultColor+UpdateMove+AssignCoordinate+ShowAccessory+UpdateInfo");
 		}
 
 		public static string GetAccessoryItemDisplayName(ChaControl cha, int slot)
@@ -592,42 +521,6 @@ namespace HS2WearCustom
 			AIWearPartList.TryStudioCostumeInfoUpdate(this.mpCharCtrl, oci);
 		}
 
-		private static void LogAccessoryDiagnostics(ChaControl cha, ListInfoBase listInfo)
-		{
-			if (cha == null)
-			{
-				return;
-			}
-			try
-			{
-				string possess = "";
-				if (listInfo != null)
-				{
-					try
-					{
-						possess = listInfo.GetInfo(ChaListDefine.KeyType.Possess) ?? "";
-					}
-					catch
-					{
-						possess = "(GetInfo Possess failed)";
-					}
-				}
-				AIWearPartList.LogAcc(string.Format("AccessoryDiag: cha.sex={0} list.Possess=\"{1}\" objTop={2} objBodyBone={3} objHead={4} cmpBoneBody={5}", new object[]
-				{
-					cha.sex,
-					possess,
-					cha.objTop != null,
-					cha.objBodyBone != null,
-					cha.objHead != null,
-					cha.cmpBoneBody != null
-				}));
-			}
-			catch (Exception ex)
-			{
-				AIWearPartList.LogAccWarn("AccessoryDiag: " + ex.Message);
-			}
-		}
-
 		private static void TryEnsureLoadControlForAccessory(ChaControl cha)
 		{
 			if (cha == null || cha.objBodyBone != null)
@@ -636,12 +529,10 @@ namespace HS2WearCustom
 			}
 			try
 			{
-				AIWearPartList.LogAccWarn("AccessoryDiag: objBodyBone is null before accessory FBX load; calling InitializeControlLoadObject().");
 				cha.CallPrivateMethod("InitializeControlLoadObject");
 			}
-			catch (Exception ex)
+			catch
 			{
-				AIWearPartList.LogAccWarn("TryEnsureLoadControlForAccessory: " + ex.Message);
 			}
 		}
 
@@ -680,69 +571,10 @@ namespace HS2WearCustom
 					{
 						oci
 					});
-					AIWearPartList.LogAcc("TryStudioCostumeInfoUpdate: CostumeInfo.UpdateInfo(oci) ok.");
 				}
 			}
-			catch (Exception ex)
+			catch
 			{
-				AIWearPartList.LogAccWarn("TryStudioCostumeInfoUpdate: " + ex.Message);
-			}
-		}
-
-		private static void LogAccessoryRuntimeState(ChaControl cha, int slot, string phase)
-		{
-			bool isAcc = false;
-			try
-			{
-				isAcc = cha.IsAccessory(slot);
-			}
-			catch (Exception ex)
-			{
-				AIWearPartList.LogAccWarn(phase + ": IsAccessory threw: " + ex.Message);
-				return;
-			}
-			bool hasObj = false;
-			bool hasCmp = false;
-			GameObject[] objs = cha.objAccessory;
-			if (objs != null && slot >= 0 && slot < objs.Length)
-			{
-				hasObj = objs[slot] != null;
-			}
-			CmpAccessory[] cmps = cha.cmpAccessory;
-			if (cmps != null && slot >= 0 && slot < cmps.Length)
-			{
-				hasCmp = cmps[slot] != null;
-			}
-			ListInfoBase[] infos = cha.infoAccessory;
-			bool hasInfo = infos != null && slot >= 0 && slot < infos.Length && infos[slot] != null;
-			AIWearPartList.LogAcc(string.Format("ApplyAccessory [{0}]: IsAccessory={1} objAccessory[{2}]={3} cmpAccessory[{4}]={5} infoAccessory[{6}]={7}", new object[]
-			{
-				phase,
-				isAcc,
-				slot,
-				hasObj,
-				slot,
-				hasCmp,
-				slot,
-				hasInfo
-			}));
-		}
-
-		private static void LogAcc(string msg)
-		{
-			ManualLogSource log = HS2WearCustom.Logger;
-			if (log != null)
-			{
-				log.LogInfo("[WearCustom/Accessory] " + msg);
-			}
-		}
-
-		private static void LogAccWarn(string msg)
-		{
-			ManualLogSource log = HS2WearCustom.Logger;
-			if (log != null)
-			{
-				log.LogWarning("[WearCustom/Accessory] " + msg);
 			}
 		}
 
