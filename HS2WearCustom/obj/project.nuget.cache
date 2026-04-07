@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "t/B/VBcVuLc=",
+  "dgSpecHash": "4TJ2dGC+Bms=",
   "success": true,
-  "projectFilePath": "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj",
+  "projectFilePath": "h:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\bigma\\.nuget\\packages\\illusionlibs.bepinex\\5.4.22\\illusionlibs.bepinex.5.4.22.nupkg.sha512",
     "C:\\Users\\bigma\\.nuget\\packages\\illusionlibs.bepinex.harmony\\2.9.0\\illusionlibs.bepinex.harmony.2.9.0.nupkg.sha512",
@@ -13,6 +13,7 @@
     "C:\\Users\\bigma\\.nuget\\packages\\illusionlibs.honeyselect2.unity.textmeshpro\\2018.4.11.4\\illusionlibs.honeyselect2.unity.textmeshpro.2018.4.11.4.nupkg.sha512",
     "C:\\Users\\bigma\\.nuget\\packages\\illusionlibs.honeyselect2.unityengine.coremodule\\2018.4.11.4\\illusionlibs.honeyselect2.unityengine.coremodule.2018.4.11.4.nupkg.sha512",
     "C:\\Users\\bigma\\.nuget\\packages\\illusionlibs.honeyselect2.unityengine.imguimodule\\2018.4.11.4\\illusionlibs.honeyselect2.unityengine.imguimodule.2018.4.11.4.nupkg.sha512",
+    "C:\\Users\\bigma\\.nuget\\packages\\illusionlibs.honeyselect2.unityengine.textrenderingmodule\\2018.4.11.4\\illusionlibs.honeyselect2.unityengine.textrenderingmodule.2018.4.11.4.nupkg.sha512",
     "C:\\Users\\bigma\\.nuget\\packages\\illusionlibs.honeyselect2.unityengine.ui\\2018.4.11.4\\illusionlibs.honeyselect2.unityengine.ui.2018.4.11.4.nupkg.sha512",
     "C:\\Users\\bigma\\.nuget\\packages\\illusionlibs.honeyselect2.unityengine.uimodule\\2018.4.11.4\\illusionlibs.honeyselect2.unityengine.uimodule.2018.4.11.4.nupkg.sha512",
     "C:\\Users\\bigma\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",

@@ -30,6 +30,7 @@
     <PackageReference Include="IllusionLibs.HoneySelect2.Unity.TextMeshPro" Version="2018.4.11.4" />
     <PackageReference Include="IllusionLibs.HoneySelect2.UnityEngine.CoreModule" Version="2018.4.11.4" />
     <PackageReference Include="IllusionLibs.HoneySelect2.UnityEngine.IMGUIModule" Version="2018.4.11.4" />
+    <PackageReference Include="IllusionLibs.HoneySelect2.UnityEngine.TextRenderingModule" Version="2018.4.11.4" />
     <PackageReference Include="IllusionLibs.HoneySelect2.UnityEngine.UI" Version="2018.4.11.4" />
     <PackageReference Include="IllusionLibs.HoneySelect2.UnityEngine.UIModule" Version="2018.4.11.4" />
   </ItemGroup>

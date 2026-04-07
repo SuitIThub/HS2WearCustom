@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj": {}
+    "h:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj": {}
   },
   "projects": {
-    "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj": {
+    "h:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj",
+        "projectUniqueName": "h:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj",
         "projectName": "HS2WearCustom",
-        "projectPath": "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj",
+        "projectPath": "h:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\HS2WearCustom.csproj",
         "packagesPath": "C:\\Users\\bigma\\.nuget\\packages\\",
-        "outputPath": "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\obj\\",
+        "outputPath": "h:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\HS2WearCustom\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "H:\\Programme\\VisualStudio\\VisualStudioShared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "H:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\NuGet.Config",
+          "h:\\Dateien\\Dokumente\\Repos\\HS2WearCustom\\NuGet.Config",
           "C:\\Users\\bigma\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
@@ -87,6 +87,10 @@
               "version": "[2018.4.11.4, )"
             },
             "IllusionLibs.HoneySelect2.UnityEngine.IMGUIModule": {
+              "target": "Package",
+              "version": "[2018.4.11.4, )"
+            },
+            "IllusionLibs.HoneySelect2.UnityEngine.TextRenderingModule": {
               "target": "Package",
               "version": "[2018.4.11.4, )"
             },
